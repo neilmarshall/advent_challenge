@@ -39,6 +39,6 @@ let countNestedBags (BagMap bagMap) =
         | NestedBag (_, l) -> acc + (l |> List.map (fun (i, ct) -> i * match ct with | NestedBag (s, _) -> (countNestedBags 1 s) | _ -> 1) |> List.sum)
     countNestedBags 0
 
-let data = File.ReadAllLines("./input_7.txt") |> parseData
+let data = File.ReadAllLines("./input/input_7.txt") |> parseData
 countBags data "shiny gold" |> printfn "%d"  // 378
 countNestedBags data "shiny gold" |> printfn "%d"  // 27526

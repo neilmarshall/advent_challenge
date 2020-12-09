@@ -41,7 +41,7 @@ let swapInstructions instructions =
     swapInstructions instructions 0
 
 let instructions =
-    System.IO.File.ReadAllLines("input_8.txt")
+    System.IO.File.ReadAllLines("./input/input_8.txt")
     |> Array.map parseInstruction
     |> Array.indexed
     |> Map.ofArray

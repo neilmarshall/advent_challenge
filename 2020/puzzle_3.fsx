@@ -334,4 +334,4 @@ let countTrees data (r, c) =
 
 let data' = [for row in data.Trim().Split('\n') -> row.Trim().ToCharArray()]
 countTrees data' (1, 3)  // should be 276
-[(1, 1); (1, 3); (1, 5); (1, 7); (2, 1)] |> List.map (countTrees data') |> List.map int64 |> List.reduce (*)  // should be 7812180000
+[(1, 1); (1, 3); (1, 5); (1, 7); (2, 1)] |> List.map (countTrees data') |> List.map int64 |> List.reduce (*) |> printfn "%d"  // should be 7812180000

@@ -2,7 +2,7 @@ import re
 
 # part (a)
 def part_a():
-    with open('input_2.txt') as f:
+    with open('./input/input_2.txt') as f:
         data = f.readlines()
     def is_valid(row):
         match = re.match(r'^(?P<lower>\d+)-(?P<upper>\d+) (?P<char>[a-z]): (?P<password>[a-z]+)$', row)
@@ -13,7 +13,7 @@ def part_a():
 
 # part (b)
 def part_b():
-    with open('input_2.txt') as f:
+    with open('./input/input_2.txt') as f:
         data = f.readlines()
     def is_valid(row):
         match = re.match(r'^(?P<first>\d+)-(?P<second>\d+) (?P<char>[a-z]): (?P<password>[a-z]+)$', row)

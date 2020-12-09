@@ -20,6 +20,6 @@ def solve(data, p):
 
 if __name__ == '__main__':
     import doctest; doctest.testmod()
-    with open("./input_9.txt") as f:
+    with open("./input/input_9.txt") as f:
         data = list(map(int, f.readlines()))
     print(solve(data, 25))  # (138879426, 23761694)

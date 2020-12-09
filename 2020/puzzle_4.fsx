@@ -2,7 +2,7 @@ open System
 open System.IO
 open System.Text.RegularExpressions
 
-let data = File.ReadAllLines("./input_4.txt") |> List.ofArray
+let data = File.ReadAllLines("./input/input_4.txt") |> List.ofArray
 
 let parse data =
     let rec parse data acc =
