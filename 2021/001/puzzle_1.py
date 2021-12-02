@@ -17,7 +17,7 @@ def count_window_increases(measurements):
 
 if __name__ == "__main__":
     import doctest; doctest.testmod()
-    with open("input\puzzle_1.txt") as f:
+    with open("puzzle_1.txt") as f:
         measurements = list(map(int, f.readlines()))
         print(f"Solution to Puzzle 1, Part A: {count_increases(measurements)}")
         print(f"Solution to Puzzle 1, Part B: {count_window_increases(measurements)}")

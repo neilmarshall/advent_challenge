@@ -41,7 +41,7 @@ def parse_directions_advanced(directions):
 
 if __name__ == "__main__":
     import doctest; doctest.testmod()
-    with open("input\puzzle_2.txt") as f:
+    with open("puzzle_2.txt") as f:
         directions = f.readlines()
         print(f"Solution to Puzzle 1, Part A: {parse_directions(directions)}")
         print(f"Solution to Puzzle 1, Part B: {parse_directions_advanced(directions)}")
