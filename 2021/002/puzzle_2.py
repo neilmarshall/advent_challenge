@@ -43,5 +43,5 @@ if __name__ == "__main__":
     import doctest; doctest.testmod()
     with open("puzzle_2.txt") as f:
         directions = f.readlines()
-        print(f"Solution to Puzzle 1, Part A: {parse_directions(directions)}")
-        print(f"Solution to Puzzle 1, Part B: {parse_directions_advanced(directions)}")
+        print(f"Solution to Puzzle 2, Part A: {parse_directions(directions)}")
+        print(f"Solution to Puzzle 2, Part B: {parse_directions_advanced(directions)}")
