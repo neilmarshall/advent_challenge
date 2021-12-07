@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alignment.Fixtures", "Alignment.Fixtures\Alignment.Fixtures.csproj", "{293F0CD9-3C22-48D0-B68F-050A654E08FF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AlignmentLib", "AlignmentLib\AlignmentLib.fsproj", "{291C0553-A0B9-4FE6-8F59-D7AF68C5C6F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{293F0CD9-3C22-48D0-B68F-050A654E08FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293F0CD9-3C22-48D0-B68F-050A654E08FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293F0CD9-3C22-48D0-B68F-050A654E08FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293F0CD9-3C22-48D0-B68F-050A654E08FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291C0553-A0B9-4FE6-8F59-D7AF68C5C6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291C0553-A0B9-4FE6-8F59-D7AF68C5C6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291C0553-A0B9-4FE6-8F59-D7AF68C5C6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291C0553-A0B9-4FE6-8F59-D7AF68C5C6F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
