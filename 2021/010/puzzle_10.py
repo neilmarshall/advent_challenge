@@ -1,76 +1,26 @@
-def check_line(line):
-    """
-    >>> check_line("{([(<{}[<>[]}>{[]{[(<()>")
-    1197
+from functools import reduce
 
-    >>> check_line("[[<[([]))<([[{}[[()]]]")
-    3
-
-    >>> check_line("[{[{({}]{}}([{[{{{}}([]")
-    57
-
-    >>> check_line("[<(<(<(<{}))><([]([]()")
-    3
-
-    >>> check_line("<{([([[(<>()){}]>(<<{{")
-    25137
-    """
+def reduce_stack(line):
     opening_tags = set(('(', '{', '[', '<'))
     stack = []
     for c in line:
         if c in opening_tags:
             stack.append(c)
         else:
-            t = {')': '(', '}': '{', ']': '[', '>': '<'}[c]
-            if t != stack[-1]:
-                return {')': 3, '}': 1197, ']': 57, '>': 25137}[c]
+            if {')': '(', '}': '{', ']': '[', '>': '<'}[c] != stack[-1]:
+                return stack, c
             else:
                 stack.pop()
-    return 0
+    return stack, None
 
 
 def score_syntax_errors(input):
     """
-    >>> input = ["[({(<(())[]>[[{[]{<()<>>", "[(()[<>])]({[<{<<[]>>(", "{([(<{}[<>[]}>{[]{[(<()>", "(((({<>}<{<{<>}{[]{[]{}", "[[<[([]))<([[{}[[()]]]", "[{[{({}]{}}([{[{{{}}([]", "{<[[]]>}<{[{[{[]{()[[[]", "[<(<(<(<{}))><([]([]()", "<{([([[(<>()){}]>(<<{{", "<{([{{}}[<[[[<>{}]]]>[]]"]
-    >>> score_syntax_errors(input)
+    >>> score_syntax_errors(["[({(<(())[]>[[{[]{<()<>>", "[(()[<>])]({[<{<<[]>>(", "{([(<{}[<>[]}>{[]{[(<()>", "(((({<>}<{<{<>}{[]{[]{}", "[[<[([]))<([[{}[[()]]]", "[{[{({}]{}}([{[{{{}}([]", "{<[[]]>}<{[{[{[]{()[[[]", "[<(<(<(<{}))><([]([]()", "<{([([[(<>()){}]>(<<{{", "<{([{{}}[<[[[<>{}]]]>[]]"])
     26397
     """
-    return sum(map(check_line, input))
-
-
-def complete_line(line):
-    """
-    >>> complete_line("[({(<(())[]>[[{[]{<()<>>")
-    288957
-
-    >>> complete_line("[(()[<>])]({[<{<<[]>>(")
-    5566
-
-    >>> complete_line("(((({<>}<{<{<>}{[]{[]{}")
-    1480781
-
-    >>> complete_line("{<[[]]>}<{[{[{[]{()[[[]")
-    995444
-
-    >>> complete_line("<{([{{}}[<[[[<>{}]]]>[]]")
-    294
-    """
-    opening_tags = set(('(', '{', '[', '<'))
-    stack = []
-    for c in line:
-        if c in opening_tags:
-            stack.append(c)
-        else:
-            t = {')': '(', '}': '{', ']': '[', '>': '<'}[c]
-            if t != stack[-1]:
-                return {')': 3, '}': 1197, ']': 57, '>': 25137}[c]
-            else:
-                stack.pop()
-    line_completion = ''.join({'(': ')', '{': '}', '[': ']', '<': '>'}[c] for c in stack[::-1])
-    total = 0
-    for c in line_completion:
-        total = (total * 5) + {')': 1, ']': 2, '}': 3, '>': 4}[c]
-    return total
+    scorer = lambda c: {')': 3, '}': 1197, ']': 57, '>': 25137}.get(c, 0)
+    return sum(scorer(c) for _, c in map(reduce_stack, input) if c is not None)
 
 
 def score_line_completions(input):
@@ -78,8 +28,10 @@ def score_line_completions(input):
     >>> score_line_completions(["[({(<(())[]>[[{[]{<()<>>", "[(()[<>])]({[<{<<[]>>(", "{([(<{}[<>[]}>{[]{[(<()>", "(((({<>}<{<{<>}{[]{[]{}", "[[<[([]))<([[{}[[()]]]", "[{[{({}]{}}([{[{{{}}([]", "{<[[]]>}<{[{[{[]{()[[[]", "[<(<(<(<{}))><([]([]()", "<{([([[(<>()){}]>(<<{{", "<{([{{}}[<[[[<>{}]]]>[]]"])
     288957
     """
-    valid_lines = [line for line in input if check_line(line) == 0]
-    scores = sorted(map(complete_line, valid_lines))
+    def complete_line(line):
+        line_completion = ''.join({'(': ')', '{': '}', '[': ']', '<': '>'}[c] for c in line[::-1])
+        return reduce(lambda a, c: (a * 5) + {')': 1, ']': 2, '}': 3, '>': 4}[c], line_completion, 0)
+    scores = sorted(complete_line(s) for s, c in map(reduce_stack, input) if c is None)
     return scores[len(scores) // 2]
 
 
